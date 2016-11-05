@@ -14,10 +14,14 @@ public class Assets {
 	public static BufferedImage[] player_up;
 	public static BufferedImage[] player_right;
 	public static BufferedImage[] player_left;	
+	public static BufferedImage[] btn_start;
 	
 	public static void init(){
 		
 		SpriteSheet sheet = new SpriteSheet (ImageLoader.loadImage("/textures/Char1_400.png"));
+		
+		
+		
 		
 		player_down = new BufferedImage[4];
 		player_down[0] = sheet.crop(0, 0, width, height);
@@ -53,7 +57,12 @@ public class Assets {
 		
 		SpriteSheet sheet1 = new SpriteSheet (ImageLoader.loadImage("/textures/Mega_World_Tile_1.png"));
 		
+		//need to change this start button later to actual image
+		btn_start = new BufferedImage[2];
+		btn_start[0] = sheet1.crop(48*3+16, 16*7, 48, 48);;
+		btn_start[1] = sheet1.crop(48*3+16, 16*7+48, 48, 48);
 		
+				
 		dirt = sheet1.crop(48*3+16+48+32, 16*7, 48, 48);
 		grass = sheet1.crop(48*3+16, 16*7, 48, 48);
 		stone = sheet1.crop(48*3+16, 16*7+48, 48, 48);

@@ -4,29 +4,44 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import dev.codenmore.tilegame.Handler;
+import dev.codenmore.tilegame.gfx.Assets;
+import dev.codenmore.tilegame.ui.ClickListener;
+import dev.codenmore.tilegame.ui.UIImageButton;
+import dev.codenmore.tilegame.ui.UIManager;
 
 public class MenuState extends State {
 	
+	private UIManager uiManager;
+	
+	
 	public MenuState(Handler handler){
 		super(handler);
+		uiManager = new UIManager(handler);
+		handler.getMouseManager().setUIManager(uiManager);
+		
+		uiManager.addObject(new UIImageButton(200, 200, 128, 64, Assets.btn_start, new ClickListener(){
+			
+		public void onClick(){
+			//unsetting the UI manager when changing state to game state. Will be handled better in future
+			handler.getMouseManager().setUIManager(null);
+			State.setState(handler.getGame().gameState);
+		}			
+		}));
 		
 	}
 	
 
 	@Override
 	public void tick() {
-		// TODO Auto-generated method stub
-		System.out.println(handler.getMouseManager().getMouseX() + "  " + handler.getMouseManager().getMouseY());
-		if(handler.getMouseManager().isLeftPressed() && handler.getMouseManager().isRightPressed())
-			State.setState(handler.getGame().gameState);
+		
+		uiManager.tick();
+	
 	}
 
 	@Override
 	public void render(Graphics g) {
-		// TODO Auto-generated method stub
-		g.setColor(Color.ORANGE);
-		g.fillRect(handler.getMouseManager().getMouseX(), handler.getMouseManager().getMouseY(), 8, 8);
 		
+		uiManager.render(g);	
 	}
 
 }
