@@ -29,11 +29,16 @@ public class Player extends Creature{
 		bounds.width= 24;
 		bounds.height= 28;
 		
-		//Animations
+		//Animations here 1000 represents ms and the steps to complete by that time
 		animDown = new Animation(1000/4,Assets.player_down);
 		animUp = new Animation(1000/4,Assets.player_up);
 		animRight = new Animation(1000/4,Assets.player_right);
 		animLeft = new Animation(1000/4,Assets.player_left);
+		
+		// Can add new animations for attack and jump etc and call their ticks in the main player tick 
+		
+		
+		
 		
 	}
 
@@ -79,9 +84,7 @@ public class Player extends Creature{
 	public void render(Graphics g) {
 		
 		g.drawImage(getCurrentAnimationFrame(),(int) (x - handler.getGameCamera().getxOffset()),(int)( y - handler.getGameCamera().getyOffset()), width, height, null);
-		
-		
-		
+				
 		/*
 		g.setColor(Color.red);
 		g.fillRect((int)((x+ bounds.x-handler.getGameCamera().getxOffset())),
